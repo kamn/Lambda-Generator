@@ -5,22 +5,72 @@
 
 ;; home
 
+(defn home-lambda-generator []
+  (fn []
+    [re-com/box
+      :child [re-com/title
+                :label "λ"
+                :class "main-lambda"
+                :level :level1]]))
+
+(defn home-lambda-generator2 []
+  (fn []
+    [re-com/button
+      :label "λ"
+      :class "main-lambda"
+      :style {:outline "none"}
+      :on-click #(re-frame/dispatch [:lambda-click])]))
+
+
+
 (defn home-title []
-  (let [name (re-frame/subscribe [:name])]
+  (let [lambda-count (re-frame/subscribe [:lambda-count])]
     (fn []
-      [re-com/title
-       :label (str "Hello from " @name ". This is the Home Page.")
-       :level :level1])))
+      [re-com/h-box
+        :children [[home-lambda-generator2]
+                   [re-com/box
+                    :child [re-com/title
+                              :label (str @lambda-count " λ")
+                              :level :level1]]]])))
 
 (defn link-to-about-page []
   [re-com/hyperlink-href
    :label "go to About Page"
    :href "#/about"])
 
+(defn lambda-upgrade-button [str key]
+  (fn []
+    [re-com/button
+      :label str
+      :class "btn btn-primary btn-lg"])) 
+    
+
+(defn lambda-tools []
+  (fn []
+    [re-com/h-box
+      :children [
+                  [re-com/box 
+                    :size "1"
+                    :justify :center
+                    :child [re-com/v-box
+                              :align :center
+                              :children [[lambda-upgrade-button "λ Upgrade 1"]
+                                         [lambda-upgrade-button "λ Upgrade 2"]
+                                         [lambda-upgrade-button "λ Upgrade 3"]
+                                         [lambda-upgrade-button "λ Upgrade 4"]
+                                         [lambda-upgrade-button "λ Upgrade 5"]
+                                         [lambda-upgrade-button "λ Upgrade 6"]
+                                         [lambda-upgrade-button "λ Upgrade 7"]
+                                         [lambda-upgrade-button "λ Upgrade 8"]]]]
+                  [re-com/box 
+                    :child "Box2"
+                    :size "1"]]]))
+
+
 (defn home-panel []
   [re-com/v-box
    :gap "1em"
-   :children [[home-title] [link-to-about-page]]])
+   :children [[home-title] [lambda-tools]#_[link-to-about-page]]])
 
 
 ;; about
