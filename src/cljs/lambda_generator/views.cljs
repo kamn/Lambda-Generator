@@ -42,7 +42,8 @@
   (fn []
     [re-com/button
       :label str
-      :class "btn btn-primary btn-lg"])) 
+      :class "btn btn-primary btn-lg"
+      :on-click #(re-frame/dispatch [key])]))
     
 
 (defn lambda-tools []
@@ -54,7 +55,7 @@
                     :justify :center
                     :child [re-com/v-box
                               :align :center
-                              :children [[lambda-upgrade-button "λ Upgrade 1"]
+                              :children [[lambda-upgrade-button "λ Upgrade 1" :tool-1]
                                          [lambda-upgrade-button "λ Upgrade 2"]
                                          [lambda-upgrade-button "λ Upgrade 3"]
                                          [lambda-upgrade-button "λ Upgrade 4"]
