@@ -4,8 +4,8 @@
 
 ;;TODO Move out
 (defn re-calc-lps [db]
-  (let [tool-1     (:tool-1 db)
-        tool-1-lps (:tool-1-lps db)]
+  (let [tool-1     (get-in db [:tool-1 :count])
+        tool-1-lps (get-in db [:tool-1 :lps])]
     (* tool-1-lps tool-1))) 
 
 (re-frame/register-handler
@@ -52,4 +52,4 @@
   (fn [db _]
     (re-frame/dispatch [:re-calc-tick-value])
     (-> db
-        (update :tool-1 inc))))
+        (update-in [:tool-1 :count] inc))))

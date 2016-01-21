@@ -38,34 +38,35 @@
    :label "go to About Page"
    :href "#/about"])
 
-(defn lambda-upgrade-button [str key]
+(defn lambda-upgrade-button [s key data]
   (fn []
     [re-com/button
-      :label str
+      :label (str (:cost @data) " λ")
       :class "btn btn-primary btn-lg"
       :on-click #(re-frame/dispatch [key])]))
     
 
 (defn lambda-tools []
-  (fn []
-    [re-com/h-box
-      :children [
-                  [re-com/box 
-                    :size "1"
-                    :justify :center
-                    :child [re-com/v-box
-                              :align :center
-                              :children [[lambda-upgrade-button "λ Upgrade 1" :tool-1]
-                                         [lambda-upgrade-button "λ Upgrade 2"]
-                                         [lambda-upgrade-button "λ Upgrade 3"]
-                                         [lambda-upgrade-button "λ Upgrade 4"]
-                                         [lambda-upgrade-button "λ Upgrade 5"]
-                                         [lambda-upgrade-button "λ Upgrade 6"]
-                                         [lambda-upgrade-button "λ Upgrade 7"]
-                                         [lambda-upgrade-button "λ Upgrade 8"]]]]
-                  [re-com/box 
-                    :child "Box2"
-                    :size "1"]]]))
+  (let [t1-data (re-frame/subscribe [:tool-1])]
+    (fn []
+      [re-com/h-box
+        :children [
+                    [re-com/box 
+                      :size "1"
+                      :justify :center
+                      :child [re-com/v-box
+                                :align :center
+                                :children [[lambda-upgrade-button "λ Upgrade 1" :tool-1 t1-data]
+                                           [lambda-upgrade-button "λ Upgrade 2" :tool-1 t1-data]
+                                           [lambda-upgrade-button "λ Upgrade 3" :tool-1 t1-data]
+                                           [lambda-upgrade-button "λ Upgrade 4" :tool-1 t1-data]
+                                           [lambda-upgrade-button "λ Upgrade 5" :tool-1 t1-data]
+                                           [lambda-upgrade-button "λ Upgrade 6" :tool-1 t1-data]
+                                           [lambda-upgrade-button "λ Upgrade 7" :tool-1 t1-data]
+                                           [lambda-upgrade-button "λ Upgrade 8" :tool-1 t1-data]]]]
+                    [re-com/box 
+                      :child "Box2"
+                      :size "1"]]])))
 
 
 (defn home-panel []
