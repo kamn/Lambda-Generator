@@ -51,5 +51,11 @@
   :tool-1
   (fn [db _]
     (re-frame/dispatch [:re-calc-tick-value])
-    (-> db
-        (update-in [:tool-1 :count] inc))))
+    (let [lambdas (:lambda-count db)
+          base-cost (get-in db [:tool-1 :base-cost])
+          cost (get-in db [:tool-1 :cost])
+          count (get-in db [:tool-1 :count])]
+      (-> db
+          (update-in [:lambda-count] #(- lambdas cost))
+          (update-in [:tool-1 :cost] #(js/Math.floor (+ base-cost (inc count) (js/Math.pow 1.3 (inc count))))) 
+          (update-in [:tool-1 :count] inc)))))
