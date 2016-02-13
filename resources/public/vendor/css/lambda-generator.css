@@ -14,3 +14,7 @@ button.main-lambda {
 .main-lambda:hover {
   outline: none;
 }
+
+.absolute {
+  position: absolute;
+}

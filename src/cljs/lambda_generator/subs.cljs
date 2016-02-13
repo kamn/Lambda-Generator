@@ -13,6 +13,11 @@
    (reaction (:lambda-count @db))))
 
 (re-frame/register-sub
+ :lambda-per-sec
+ (fn [db]
+   (reaction (:lambda-per-sec @db))))
+
+(re-frame/register-sub
  :active-panel
  (fn [db _]
    (reaction (:active-panel @db))))
