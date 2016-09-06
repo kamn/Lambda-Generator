@@ -46,7 +46,7 @@
       :disabled? (> (:cost @data) @lambdas)
       :class "btn btn-primary btn-lg"
       :on-click #(re-frame/dispatch [key])]))
-    
+
 
 (defn lambda-upgrade [s key data lambdas]
   (fn []
@@ -72,21 +72,35 @@
       [re-com/h-box
         :children [
                     ;;[:p.absolute "λ"]
-                    [re-com/box  
+                    [re-com/box
                       :size "1"
                       :justify :center
                       :child [re-com/v-box
                                 :align :start
                                 :gap "5px"
-                                :children [[lambda-upgrade "First-Class Functions" :tool-1 t1-data lambdas]
-                                           [lambda-upgrade "Curried Functions" :tool-2 t2-data lambdas]
-                                           [lambda-upgrade "Pure Functions" :tool-3 t3-data lambdas]
-                                           [lambda-upgrade "λ Upgrade 4" :tool-4 t4-data lambdas]
-                                           [lambda-upgrade "λ Upgrade 5" :tool-5 t5-data lambdas]
-                                           [lambda-upgrade "λ Upgrade 6" :tool-6 t6-data lambdas]
-                                           [lambda-upgrade "λ Upgrade 7" :tool-7 t7-data lambdas]
-                                           [lambda-upgrade "λ Upgrade 8" :tool-8 t8-data lambdas]]]]
-                    [re-com/box 
+                                ;; 1 "Basic Functions"
+                                ;; 2 "Pure Functions"
+                                ;; 3 "First-Class Functions"
+                                ;; 4 "Higher-Order Functions"
+                                ;; 5 "Closures"
+                                ;; 6 "Immutability"
+                                ;; 7 "Macros"
+                                ;; 8 "Lisp"
+                                ;;
+                                ;;
+                                ;;
+                                ;;
+                                ;;
+                                ;;
+                                :children [[lambda-upgrade "Basic Functions" :tool-1 t1-data lambdas]
+                                           [lambda-upgrade "Pure Functions" :tool-2 t2-data lambdas]
+                                           [lambda-upgrade "First-Class Functions" :tool-3 t3-data lambdas]
+                                           [lambda-upgrade "Higher-Order Functions" :tool-4 t4-data lambdas]
+                                           [lambda-upgrade "Closures" :tool-5 t5-data lambdas]
+                                           [lambda-upgrade "Immutability" :tool-6 t6-data lambdas]
+                                           [lambda-upgrade "Macros" :tool-7 t7-data lambdas]
+                                           [lambda-upgrade "Lisp" :tool-8 t8-data lambdas]]]]
+                    [re-com/box
                       :child "Box2"
                       :size "1"]]])))
 
@@ -95,19 +109,6 @@
   [re-com/v-box
    :gap "1em"
    :children [[home-title] [lambda-tools] #_[link-to-about-page]]])
-
-
-;; about
-
-(defn about-title []
-  [re-com/title
-   :label "This is the About Page."
-   :level :level1])
-
-(defn link-to-home-page []
-  [re-com/hyperlink-href
-   :label "go to Home Page"
-   :href "#/"])
 
 (defn about-panel []
   [re-com/v-box
