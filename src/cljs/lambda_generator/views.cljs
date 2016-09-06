@@ -78,14 +78,6 @@
                       :child [re-com/v-box
                                 :align :start
                                 :gap "5px"
-                                ;; 1 "Basic Functions"
-                                ;; 2 "Pure Functions"
-                                ;; 3 "First-Class Functions"
-                                ;; 4 "Higher-Order Functions"
-                                ;; 5 "Closures"
-                                ;; 6 "Immutability"
-                                ;; 7 "Macros"
-                                ;; 8 "Lisp"
                                 :children [[lambda-upgrade "Basic Functions" :tool-1 t1-data lambdas]
                                            [lambda-upgrade "Pure Functions" :tool-2 t2-data lambdas]
                                            [lambda-upgrade "First-Class Functions" :tool-3 t3-data lambdas]
@@ -93,28 +85,13 @@
                                            [lambda-upgrade "Closures" :tool-5 t5-data lambdas]
                                            [lambda-upgrade "Immutability" :tool-6 t6-data lambdas]
                                            [lambda-upgrade "Macros" :tool-7 t7-data lambdas]
-                                           [lambda-upgrade "Lisp" :tool-8 t8-data lambdas]]]]
-                    [re-com/box
-                      :child "Box2"
-                      :size "1"]]])))
+                                           [lambda-upgrade "Lisp2" :tool-8 t8-data lambdas]]]]]])))
 
-
-(defn home-panel []
-  [re-com/v-box
-   :gap "1em"
-   :children [[home-title] [lambda-tools] #_[link-to-about-page]]])
-
-(defn about-panel []
-  [re-com/v-box
-   :gap "1em"
-   :children [[about-title] [link-to-home-page]]])
 
 
 ;; main
 
 (defmulti panels identity)
-(defmethod panels :home-panel [] [home-panel])
-(defmethod panels :about-panel [] [about-panel])
 (defmethod panels :default [] [:div])
 
 (defn main-panel []
