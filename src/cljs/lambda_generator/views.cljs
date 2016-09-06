@@ -86,12 +86,6 @@
                                 ;; 6 "Immutability"
                                 ;; 7 "Macros"
                                 ;; 8 "Lisp"
-                                ;;
-                                ;;
-                                ;;
-                                ;;
-                                ;;
-                                ;;
                                 :children [[lambda-upgrade "Basic Functions" :tool-1 t1-data lambdas]
                                            [lambda-upgrade "Pure Functions" :tool-2 t2-data lambdas]
                                            [lambda-upgrade "First-Class Functions" :tool-3 t3-data lambdas]

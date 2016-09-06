@@ -5,8 +5,12 @@
 ;;TODO Move out
 (defn re-calc-lps [db]
   (let [tool-1     (get-in db [:tool-1 :count])
-        tool-1-lps (get-in db [:tool-1 :lps])]
-    (* tool-1-lps tool-1))) 
+        tool-1-lps (get-in db [:tool-1 :lps])
+        tool-2     (get-in db [:tool-2 :count])
+        tool-2-lps (get-in db [:tool-2 :lps])]
+    (+
+      (* tool-1-lps tool-1)
+      (* tool-2-lps tool-2))))
 
 (re-frame/register-handler
  :initialize-db
@@ -26,7 +30,7 @@
           new-lambda (+ lambda-inc (:lambda-count db))
           new-remainder (- lambda-remainder lambda-inc)]
         (js/setTimeout #(re-frame/dispatch [:tick]) 30)
-        (-> db 
+        (-> db
             (assoc :last-time curr-time)
             (assoc :lambda-count new-lambda)
             (assoc :lambda-remainder new-remainder)))))
@@ -57,5 +61,18 @@
           count (get-in db [:tool-1 :count])]
       (-> db
           (update-in [:lambda-count] #(- lambdas cost))
-          (update-in [:tool-1 :cost] #(js/Math.floor (+ base-cost (inc count) (js/Math.pow 1.3 (inc count))))) 
+          (update-in [:tool-1 :cost] #(js/Math.floor (+ base-cost (inc count) (js/Math.pow 1.3 (inc count)))))
           (update-in [:tool-1 :count] inc)))))
+
+(re-frame/register-handler
+  :tool-2
+  (fn [db _]
+    (re-frame/dispatch [:re-calc-tick-value])
+    (let [lambdas (:lambda-count db)
+          base-cost (get-in db [:tool-2 :base-cost])
+          cost (get-in db [:tool-2 :cost])
+          count (get-in db [:tool-2 :count])]
+      (-> db
+          (update-in [:lambda-count] #(- lambdas cost))
+          (update-in [:tool-2 :cost] #(js/Math.floor (+ base-cost (inc count) (js/Math.pow 1.3 (inc count)))))
+          (update-in [:tool-2 :count] inc)))))

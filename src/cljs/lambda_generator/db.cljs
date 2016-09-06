@@ -12,7 +12,8 @@
             :cost 10
             :name "Upgrade 1"}
    :tool-2 {:count 0
-            :lps 0.1
+            :lps 1
+            :base-cost 100
             :cost 100
             :name "Upgrade 2"}
    :tool-3 {:count 0
