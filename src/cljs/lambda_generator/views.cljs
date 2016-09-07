@@ -54,6 +54,8 @@
   (fn []
     [re-com/h-box
       :align :center
+      :justify :between
+      :width "100%"
       :gap "5px"
       :children [
                   [re-com/title :label s :level :level2]
