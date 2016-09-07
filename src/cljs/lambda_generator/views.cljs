@@ -89,7 +89,7 @@
                                            [lambda-upgrade "Closures" :tool-5 t5-data lambdas]
                                            [lambda-upgrade "Immutability" :tool-6 t6-data lambdas]
                                            [lambda-upgrade "Macros" :tool-7 t7-data lambdas]
-                                           [lambda-upgrade "Lisp2" :tool-8 t8-data lambdas]]]]]])))
+                                           [lambda-upgrade "Recursion" :tool-8 t8-data lambdas]]]]]])))
 
 
 
