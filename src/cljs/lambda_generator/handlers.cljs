@@ -8,9 +8,9 @@
         tool-1-lps (get-in db [:tool-1 :lps])
         tool-2     (get-in db [:tool-2 :count])
         tool-2-lps (get-in db [:tool-2 :lps])]
-    (+
+    (/ (js/Math.round (* 10 (+
       (* tool-1-lps tool-1)
-      (* tool-2-lps tool-2))))
+      (* tool-2-lps tool-2)))) 10)))
 
 (re-frame/register-handler
  :initialize-db
