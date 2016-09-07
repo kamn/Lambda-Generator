@@ -93,9 +93,15 @@
 
 
 
+(defn home-panel []
+  [re-com/v-box
+   :gap "1em"
+   :children [[home-title] [lambda-tools] #_[link-to-about-page]]])
+
 ;; main
 
 (defmulti panels identity)
+(defmethod panels :home-panel [] [home-panel])
 (defmethod panels :default [] [:div])
 
 (defn main-panel []
