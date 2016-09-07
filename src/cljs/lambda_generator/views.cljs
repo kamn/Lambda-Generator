@@ -27,7 +27,9 @@
   (let [lambda-count (re-frame/subscribe [:lambda-count])
         lambda-per-sec (re-frame/subscribe [:lambda-per-sec])]
     (fn []
-      [re-com/h-box
+      [re-com/v-box
+        :justify :center
+        :align :center
         :children [[home-lambda-generator2]
                    [re-com/v-box
                     :children [
