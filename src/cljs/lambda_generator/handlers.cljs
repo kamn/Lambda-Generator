@@ -51,28 +51,30 @@
     (-> db
       (assoc :lambda-per-sec (re-calc-lps db)))))
 
+(defn tool-update [key db]
+  (let [lambdas (:lambda-count db)
+        base-cost (get-in db [key :base-cost])
+        cost (get-in db [key :cost])
+        count (get-in db [key :count])]
+    (-> db
+        (update-in [:lambda-count] #(- lambdas cost))
+        (update-in [key :cost] #(js/Math.floor (+ base-cost (inc count) (js/Math.pow 1.3 (inc count)))))
+        (update-in [key :count] inc))))
+
 (re-frame/register-handler
   :tool-1
   (fn [db _]
     (re-frame/dispatch [:re-calc-tick-value])
-    (let [lambdas (:lambda-count db)
-          base-cost (get-in db [:tool-1 :base-cost])
-          cost (get-in db [:tool-1 :cost])
-          count (get-in db [:tool-1 :count])]
-      (-> db
-          (update-in [:lambda-count] #(- lambdas cost))
-          (update-in [:tool-1 :cost] #(js/Math.floor (+ base-cost (inc count) (js/Math.pow 1.3 (inc count)))))
-          (update-in [:tool-1 :count] inc)))))
+    (tool-update :tool-1 db)))
 
 (re-frame/register-handler
   :tool-2
   (fn [db _]
     (re-frame/dispatch [:re-calc-tick-value])
-    (let [lambdas (:lambda-count db)
-          base-cost (get-in db [:tool-2 :base-cost])
-          cost (get-in db [:tool-2 :cost])
-          count (get-in db [:tool-2 :count])]
-      (-> db
-          (update-in [:lambda-count] #(- lambdas cost))
-          (update-in [:tool-2 :cost] #(js/Math.floor (+ base-cost (inc count) (js/Math.pow 1.3 (inc count)))))
-          (update-in [:tool-2 :count] inc)))))
+    (tool-update :tool-2 db)))
+
+(re-frame/register-handler
+  :tool-3
+  (fn [db _]
+    (re-frame/dispatch [:re-calc-tick-value])
+    (tool-update :tool-3 db)))
