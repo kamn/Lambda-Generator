@@ -17,26 +17,32 @@
             :cost 100
             :name "Upgrade 2"}
    :tool-3 {:count 0
-            :lps 0.1
+            :lps 10
+            :base-cost 1000
             :cost 1000
             :name "Upgrade 3"}
    :tool-4 {:count 0
-            :lps 0.1
+            :lps 100
+            :base-cost 10000
             :cost 10000
             :name "Upgrade 4"}
    :tool-5 {:count 0
-            :lps 0.1
+            :lps 1000
+            :base-cost 100000
             :cost 100000
             :name "Upgrade 5"}
    :tool-6 {:count 0
-            :lps 0.1
+            :lps 10000
+            :base-cost 1000000
             :cost 1000000
             :name "Upgrade 6"}
    :tool-7 {:count 0
-            :lps 0.1
+            :lps 100000
+            :base-cost 10000000
             :cost 10000000
             :name "Upgrade 7"}
    :tool-8 {:count 0
-            :lps 0.1
+            :lps 1000000
+            :base-cost 100000000
             :cost 100000000
-            :name "Upgrade 1"}})
+            :name "Upgrade 8"}})
