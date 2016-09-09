@@ -67,6 +67,7 @@
       (assoc :lambda-per-sec (re-calc-lps db)))))
 
 (defn tool-update [key db]
+  (re-frame/dispatch [:re-calc-tick-value])
   (let [lambdas (:lambda-count db)
         base-cost (get-in db [key :base-cost])
         cost (get-in db [key :cost])
@@ -79,47 +80,39 @@
 (re-frame/register-handler
   :tool-1
   (fn [db _]
-    (re-frame/dispatch [:re-calc-tick-value])
     (tool-update :tool-1 db)))
 
 (re-frame/register-handler
   :tool-2
   (fn [db _]
-    (re-frame/dispatch [:re-calc-tick-value])
     (tool-update :tool-2 db)))
 
 (re-frame/register-handler
   :tool-3
   (fn [db _]
-    (re-frame/dispatch [:re-calc-tick-value])
     (tool-update :tool-3 db)))
 
 (re-frame/register-handler
   :tool-4
   (fn [db _]
-    (re-frame/dispatch [:re-calc-tick-value])
     (tool-update :tool-4 db)))
 
 (re-frame/register-handler
   :tool-5
   (fn [db _]
-    (re-frame/dispatch [:re-calc-tick-value])
     (tool-update :tool-5 db)))
 
 (re-frame/register-handler
   :tool-6
   (fn [db _]
-    (re-frame/dispatch [:re-calc-tick-value])
     (tool-update :tool-6 db)))
 
 (re-frame/register-handler
   :tool-7
   (fn [db _]
-    (re-frame/dispatch [:re-calc-tick-value])
     (tool-update :tool-7 db)))
 
 (re-frame/register-handler
   :tool-8
   (fn [db _]
-    (re-frame/dispatch [:re-calc-tick-value])
     (tool-update :tool-8 db)))

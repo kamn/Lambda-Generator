@@ -2,9 +2,7 @@
     (:require [re-frame.core :as re-frame]
               [re-com.core :as re-com]))
 
-
 ;; home
-
 (defn home-lambda-generator []
   (fn []
     [re-com/box
@@ -20,8 +18,6 @@
       :class "main-lambda"
       :style {:outline "none"}
       :on-click #(re-frame/dispatch [:lambda-click])]))
-
-
 
 (defn home-title []
   (let [lambda-count (re-frame/subscribe [:lambda-count])
@@ -61,7 +57,6 @@
                   [re-com/title :label s :level :level2]
                   [lambda-upgrade-button s key data lambdas]]]))
 
-
 (defn lambda-tools []
   (let [t1-data (re-frame/subscribe [:tool-1])
         t2-data (re-frame/subscribe [:tool-2])
@@ -96,13 +91,13 @@
 (defn home-panel []
   [re-com/v-box
    :gap "1em"
-   :children [[home-title] [lambda-tools] #_[link-to-about-page]]])
+   :children [[home-title] [lambda-tools]]])
 
 ;; main
 
 (defmulti panels identity)
 (defmethod panels :home-panel [] [home-panel])
-(defmethod panels :default [] [:div])
+(defmethod panels :default [] [home-panel])
 
 (defn main-panel []
   (let [active-panel (re-frame/subscribe [:active-panel])]
