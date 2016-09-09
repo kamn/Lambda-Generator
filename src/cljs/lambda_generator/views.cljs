@@ -46,7 +46,7 @@
     [re-com/button
       :label (str (:cost @data) " λ")
       :disabled? (> (:cost @data) @lambdas)
-      :class "btn btn-primary btn-lg"
+      :class "btn btn-default btn-lg"
       :on-click #(re-frame/dispatch [key])]))
 
 
