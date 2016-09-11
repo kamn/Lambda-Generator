@@ -21,6 +21,5 @@
   (defroute "/" []
     (re-frame/dispatch [:set-active-panel :home-panel]))
 
-
   ;; --------------------
   (hook-browser-navigation!))

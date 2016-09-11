@@ -5,14 +5,6 @@
 ;; home
 (defn home-lambda-generator []
   (fn []
-    [re-com/box
-      :child [re-com/title
-                :label "λ"
-                :class "main-lambda"
-                :level :level1]]))
-
-(defn home-lambda-generator2 []
-  (fn []
     [re-com/button
       :label "λ"
       :class "main-lambda"
@@ -26,7 +18,7 @@
       [re-com/v-box
         :justify :center
         :align :center
-        :children [[home-lambda-generator2]
+        :children [[home-lambda-generator]
                    [re-com/v-box
                     :children [
                                 [re-com/title
@@ -86,15 +78,12 @@
                                            [lambda-upgrade "Macros" :tool-7 t7-data lambdas]
                                            [lambda-upgrade "Recursion" :tool-8 t8-data lambdas]]]]]])))
 
-
-
 (defn home-panel []
   [re-com/v-box
    :gap "1em"
    :children [[home-title] [lambda-tools]]])
 
 ;; main
-
 (defmulti panels identity)
 (defmethod panels :home-panel [] [home-panel])
 (defmethod panels :default [] [home-panel])
